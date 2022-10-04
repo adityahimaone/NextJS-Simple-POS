@@ -1,14 +1,19 @@
+import { useEffect } from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
 
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import LayoutDefault from "@/components/layouts/Default";
 import CardProduct from "@/components/CardProduct";
+import { getDataProducts } from "@/store/productsSlice";
 
 const Home: NextPage = () => {
+  const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.products);
 
-  console.log(products);
+  useEffect(() => {
+    dispatch(getDataProducts());
+  }, []);
   return (
     <LayoutDefault>
       <div>

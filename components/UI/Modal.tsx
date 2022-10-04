@@ -3,6 +3,7 @@ import React from "react";
 interface IModal {
   children: React.ReactNode;
   onClose: () => void;
+  title?: string;
 }
 
 interface IBackdrop {
@@ -30,13 +31,22 @@ const ModalOverlay = ({ children }: IModalOverlay) => {
   );
 };
 
-function Modal({ children, onClose }: IModal): JSX.Element {
+function Modal({ children, onClose, title }: IModal): JSX.Element {
   return (
     <div id="overlay">
       <Backdrop onClose={onClose} />
-      <ModalOverlay>{children}</ModalOverlay>
+      <ModalOverlay>
+        <div className="absolute top-0 inset-x-0 rounded-t-md bg-orange-500 p-3">
+          <p className="text-white text-center text-xl">{title}</p>
+        </div>
+        <div className="mt-12">{children}</div>
+      </ModalOverlay>
     </div>
   );
 }
+
+Modal.defaultProps = {
+  title: "Modal",
+};
 
 export default Modal;

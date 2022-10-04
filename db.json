@@ -1,0 +1,146 @@
+{
+  "Items": [
+    {
+      "id": 1,
+      "name": "oval hat",
+      "type": "hats",
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 20000
+        },
+        {
+          "priceFor": "VIP",
+          "price": 15000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "square hat",
+      "type": "hats",
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 30000
+        },
+        {
+          "priceFor": "VIP",
+          "price": 20000
+        },
+        {
+          "priceFor": "wholesale",
+          "price": 15000
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "magic shirt",
+      "type": "tops",
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 50000
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "magic shirt 2",
+      "type": "tops",
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 50000
+        }
+      ]
+    }
+  ],
+  "Buyers": [
+    {
+      "id": 1,
+      "name": "Ani",
+      "type": "regular"
+    },
+    {
+      "id": 2,
+      "name": "Budi",
+      "type": "VIP"
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "type": "regular"
+    },
+    {
+      "id": 4,
+      "name": "Dipta",
+      "type": "wholesale"
+    }
+  ],
+  "Transaction": [
+    {
+      "item": "magic shirt",
+      "qty": 1,
+      "buyer": "Ani"
+    },
+    {
+      "item": "square hat",
+      "qty": 2,
+      "buyer": "Budi"
+    },
+    {
+      "item": "magic shirt",
+      "qty": 1,
+      "buyer": "Ani"
+    },
+    {
+      "item": "oval hat",
+      "qty": 1,
+      "buyer": "Ani"
+    },
+    {
+      "item": "square hat",
+      "qty": 100,
+      "buyer": "Dipta"
+    }
+  ],
+  "Summary": {
+    "totalTransaction": 5,
+    "bestSellingItem": "square hat",
+    "bestSellingCategory": "hats",
+    "rpc": [
+      {
+        "category": "hats",
+        "revenue": 1560000
+      },
+      {
+        "category": "tops",
+        "revenue": 100000
+      },
+      {
+        "category": "shorts",
+        "revenue": 0
+      }
+    ],
+    "revenue": 1660000,
+    "bestSpenders": [
+      {
+        "name": "Dipta",
+        "type": "wholesale",
+        "spent": 1500000
+      },
+      {
+        "name": "Ani",
+        "type": "regular",
+        "spent": 120000
+      },
+      {
+        "name": "Budi",
+        "type": "VIP",
+        "spent": 40000
+      }
+    ]
+  }
+}

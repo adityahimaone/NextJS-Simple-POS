@@ -12,6 +12,7 @@ import thunk, { ThunkDispatch } from "redux-thunk";
 
 import productsReducer from "./productsSlice";
 import cartsReducer from "./cartSlice";
+import buyersReducer from "./buyerSlice";
 
 const logger = createLogger();
 
@@ -23,6 +24,7 @@ const persistConfig = {
 const reducers = combineReducers({
   products: productsReducer,
   carts: cartsReducer,
+  buyers: buyersReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

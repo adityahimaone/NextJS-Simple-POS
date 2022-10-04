@@ -9,7 +9,7 @@ interface IButton {
 
 function Button({ children, onClick, full }: IButton): JSX.Element {
   const buttonClasses = classNames(
-    "bg-orange-600 text-white rounded-md px-3 py-1 flex justify-center items-baseline",
+    "bg-orange-600 text-white rounded-md px-3 py-1.5 flex justify-center items-baseline",
     {
       "w-full": full,
       "w-fit": !full,

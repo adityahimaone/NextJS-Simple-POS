@@ -76,7 +76,7 @@ function Aside({ onShowModal }: IAside): JSX.Element {
           </div>
         )}
         <div className="flex absolute bottom-2 inset-x-0">
-          <div className="flex mx-3 w-full">
+          <div className="flex mx-3 w-full items-center">
             <div className=" w-full">
               <span className="text-xl font-bold">Total :</span>
               <span className="text-xl font-medium"> {initPrice * amount}</span>

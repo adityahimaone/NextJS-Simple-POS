@@ -22,6 +22,7 @@ function InputSelect({ name, label, value, onChange, options }: IInputSelect) {
         id={`form-cus-${name}`}
         name={name}
         value={value}
+        defaultValue={value}
         onChange={onChange}
         className="block w-full rounded-lg border p-2 text-sm text-gray-900 focus:border-amber-400 border-gray-300 bg-gray-50"
       >

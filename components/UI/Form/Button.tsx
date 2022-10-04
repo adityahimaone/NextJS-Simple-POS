@@ -4,10 +4,11 @@ import classNames from "classnames";
 interface IButton {
   children: React.ReactNode;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset";
   full: boolean;
 }
 
-function Button({ children, onClick, full }: IButton): JSX.Element {
+function Button({ children, onClick, type, full }: IButton): JSX.Element {
   const buttonClasses = classNames(
     "bg-orange-600 text-white rounded-md px-3 py-1.5 flex justify-center items-baseline",
     {
@@ -17,7 +18,7 @@ function Button({ children, onClick, full }: IButton): JSX.Element {
   );
 
   return (
-    <button type="button" onClick={onClick} className={buttonClasses}>
+    <button type={type} onClick={onClick} className={buttonClasses}>
       {children}
     </button>
   );
@@ -25,6 +26,7 @@ function Button({ children, onClick, full }: IButton): JSX.Element {
 
 Button.defaultProps = {
   full: false,
+  type: "button",
 };
 
 export default Button;

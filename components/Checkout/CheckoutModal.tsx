@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useReactToPrint } from "react-to-print";
+import classNames from "classnames";
 
 import Modal from "../UI/Modal";
 import InputText from "../UI/Form/InputText";
 import InputSelect from "../UI/Form/InputSelect";
-import { OptionsBuyer, Product } from "@/utils/Constants";
+import { Product } from "@/utils/Constants";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { getDataBuyers } from "@/store/buyerSlice";
+import { postDataTransaction } from "@/store/transactionsSlice";
 import { ICheckoutData } from "@/utils/Types";
 import CheckoutSummary from "./CheckoutSummary";
 import Button from "../UI/Form/Button";
+import CheckoutPrint from "./CheckoutPrint";
 
 function Checkout({ onClose }: { onClose: () => void }): JSX.Element {
   const dispatch = useAppDispatch();
+  const componentPrintRef = useRef<HTMLDivElement>(null);
 
   const buyers = useAppSelector((state) => state.buyers);
   const carts = useAppSelector((state) => state.carts);
@@ -21,7 +26,8 @@ function Checkout({ onClose }: { onClose: () => void }): JSX.Element {
     (price) => price.priceFor === "regular"
   )[0].price;
 
-  const [price, setPrice] = useState(defaultPrice);
+  const [showPrintLayout, setShowPrintLayout] = useState<boolean>(false);
+  const [price, setPrice] = useState<number>(defaultPrice);
   const [checkoutData, setCheckoutData] = useState<ICheckoutData>({
     buyer: {
       id: "",
@@ -79,29 +85,64 @@ function Checkout({ onClose }: { onClose: () => void }): JSX.Element {
     }
   };
 
-  console.log(checkoutData, "checkoutData");
+  const handlePrint = useReactToPrint({
+    content: () => componentPrintRef.current,
+  });
+
+  const showHideClass = classNames({
+    hidden: !showPrintLayout,
+    block: showPrintLayout,
+  });
+
+  const handleSubmit = () => {
+    setShowPrintLayout(true);
+    const id = Math.floor(Math.random() * 1000000000);
+    dispatch(
+      postDataTransaction({
+        id: id,
+        item: checkoutData.product.name,
+        qty: checkoutData.amount,
+        buyer: checkoutData.buyer.name,
+      })
+    );
+    handlePrint();
+    onClose();
+  };
 
   return (
-    <Modal onClose={onClose} title="Checkout">
-      <div>
-        <InputSelect
-          name="type"
-          label="Select Buyer"
-          options={options}
-          value={checkoutData.buyer.id}
-          onChange={onChangeSelectBuyer}
+    <>
+      <Modal onClose={onClose} title="Checkout">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <InputSelect
+              name="type"
+              label="Select Buyer"
+              options={options}
+              value={checkoutData.buyer.id}
+              onChange={onChangeSelectBuyer}
+            />
+          </div>
+          <CheckoutSummary
+            product={product}
+            price={price}
+            amount={amount}
+            checkoutData={checkoutData}
+          />
+          <div className="flex justify-end">
+            <Button type="submit">Generate Invoice</Button>
+          </div>
+        </form>
+      </Modal>
+      <div className={showHideClass}>
+        <CheckoutPrint
+          product={product}
+          price={price}
+          amount={amount}
+          data={checkoutData}
+          ref={componentPrintRef}
         />
       </div>
-      <CheckoutSummary
-        product={product}
-        price={price}
-        amount={amount}
-        checkoutData={checkoutData}
-      />
-      <div className="flex justify-end">
-        <Button>Generate Invoice</Button>
-      </div>
-    </Modal>
+    </>
   );
 }
 

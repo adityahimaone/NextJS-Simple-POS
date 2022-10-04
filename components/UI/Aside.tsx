@@ -26,7 +26,7 @@ function Aside({ onShowModal }: IAside): JSX.Element {
   console.log(carts);
   const initPrice = product.prices.filter(
     (price) => price.priceFor === "regular"
-  )[0].price;
+  )[0]?.price;
 
   return (
     <aside className="w-4/12 bg-slate-100 drop-shadow-lg relative">

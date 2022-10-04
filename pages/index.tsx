@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import LayoutDefault from "@/components/layouts/Default";
 import CardProduct from "@/components/CardProduct";
 import { getDataProducts } from "@/store/productsSlice";
+import { getDataTransactions } from "@/store/transactionsSlice";
 
 const Home: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     dispatch(getDataProducts());
+    dispatch(getDataTransactions());
   }, []);
   return (
     <LayoutDefault>

@@ -32,6 +32,10 @@ export interface IInitialStateBuyer extends IInitalState {
   }[];
 }
 
+export interface IInitialStateTransaction extends IInitalState {
+  data: ITransaction[];
+}
+
 export interface IOption {
   value: string | number;
   label: string;
@@ -42,13 +46,22 @@ export interface IResponse {
   errors: Record<string, unknown>;
 }
 
+export interface IBuyer {
+  id: string | number;
+  name: string;
+  type: string;
+}
+
 export interface ICheckoutData {
-  buyer: {
-    id: string | number;
-    name: string;
-    type: string;
-  };
+  buyer: IBuyer;
   product: IProduct;
   amount: number;
   total: number;
+}
+
+export interface ITransaction {
+  id: string | number;
+  item: string;
+  qty: number;
+  buyer: string;
 }

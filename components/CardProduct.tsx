@@ -28,10 +28,10 @@ function CardProduct({ ...product }: ICardProduct): JSX.Element {
 
   return (
     <div
-      className="bg-white drop-shadow-md rounded-md hover:scale-105 transition-all cursor-pointer"
+      className="bg-white drop-shadow-md rounded-md hover:scale-105 transition-all cursor-pointer overflow-hidden"
       onClick={handleAddCart}
     >
-      <div className="w-100 h-32 bg-orange-600 rounded-t-md flex justify-center items-center">
+      <div className="w-100 h-32 bg-orange-600 flex justify-center items-center">
         <span className="text-4xl text-white">{thumbnailName}</span>
       </div>
       <div className="p-2">

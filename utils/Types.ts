@@ -36,6 +36,24 @@ export interface IInitialStateTransaction extends IInitalState {
   data: ITransaction[];
 }
 
+export interface IInitialStateSummary extends IInitalState {
+  data: {
+    totalTransaction: number;
+    bestSellingItem: string;
+    bestSellingCategory: string;
+    rpc: {
+      category: string;
+      revenue: number;
+    }[];
+    revenue: number;
+    bestSpenders: {
+      name: string;
+      type: string;
+      spent: number;
+    }[];
+  };
+}
+
 export interface IOption {
   value: string | number;
   label: string;

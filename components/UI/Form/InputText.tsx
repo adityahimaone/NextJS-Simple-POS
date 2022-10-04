@@ -16,7 +16,7 @@ function InputText({
   placeholder,
   value,
   onChange,
-}: IInputText) {
+}: IInputText): JSX.Element {
   return (
     <div className="mb-3">
       <label

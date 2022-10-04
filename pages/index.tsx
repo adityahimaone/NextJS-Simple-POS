@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import LayoutDefault from "@/components/layouts/Default";
+import LayoutWithAside from "@/components/layouts/WithAside";
 import CardProduct from "@/components/CardProduct";
 import { getDataProducts } from "@/store/productsSlice";
 import { getDataTransactions } from "@/store/transactionsSlice";
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
     dispatch(getDataTransactions());
   }, []);
   return (
-    <LayoutDefault>
+    <LayoutWithAside>
       <div>
         <h1>Products</h1>
       </div>
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
           <CardProduct key={product.name} {...product} />
         ))}
       </div>
-    </LayoutDefault>
+    </LayoutWithAside>
   );
 };
 

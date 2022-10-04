@@ -9,7 +9,13 @@ interface IInputSelect {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   options: IOption[];
 }
-function InputSelect({ name, label, value, onChange, options }: IInputSelect) {
+function InputSelect({
+  name,
+  label,
+  value,
+  onChange,
+  options,
+}: IInputSelect): JSX.Element {
   return (
     <div className="mb-3">
       <label

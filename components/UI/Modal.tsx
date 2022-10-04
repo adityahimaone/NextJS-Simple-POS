@@ -25,7 +25,7 @@ const Backdrop = ({ onClose }: IBackdrop) => {
 
 const ModalOverlay = ({ children }: IModalOverlay) => {
   return (
-    <div className="fixed top-[20vh] left-[5%] w-[90%] lg:w-[40rem] lg:left-[calc(50%_-_20rem)] bg-white p-[1rem] rounded-md drop-shadow-md z-30 transition-all">
+    <div className="fixed top-[20vh] left-[5%] w-[90%] lg:w-[40rem] lg:left-[calc(50%_-_20rem)] bg-white p-[1rem] overflow-hidden rounded-md drop-shadow-md z-30 transition-all">
       <div>{children}</div>
     </div>
   );
@@ -36,7 +36,7 @@ function Modal({ children, onClose, title }: IModal): JSX.Element {
     <div id="overlay">
       <Backdrop onClose={onClose} />
       <ModalOverlay>
-        <div className="absolute top-0 inset-x-0 rounded-t-md bg-orange-500 p-3">
+        <div className="absolute top-0 inset-x-0 bg-orange-500 p-3">
           <p className="text-white text-center text-xl">{title}</p>
         </div>
         <div className="mt-12">{children}</div>

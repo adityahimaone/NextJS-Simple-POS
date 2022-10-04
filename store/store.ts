@@ -14,6 +14,7 @@ import productsReducer from "./productsSlice";
 import cartsReducer from "./cartSlice";
 import buyersReducer from "./buyerSlice";
 import transactionsReducer from "./transactionsSlice";
+import summaryReducer from "./summarySlice";
 
 const logger = createLogger();
 
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   carts: cartsReducer,
   buyers: buyersReducer,
   transactions: transactionsReducer,
+  summary: summaryReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

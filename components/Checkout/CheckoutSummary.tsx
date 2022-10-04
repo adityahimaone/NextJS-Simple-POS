@@ -14,7 +14,7 @@ function CheckoutSummary({
   price,
   amount,
   checkoutData,
-}: ICheckoutSummary) {
+}: ICheckoutSummary): JSX.Element {
   const { name, type } = product;
   const { total, buyer } = checkoutData;
 

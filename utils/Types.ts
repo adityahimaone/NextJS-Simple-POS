@@ -1,4 +1,5 @@
 export interface IProduct {
+  id: string | number;
   name: string;
   type: string;
   prices: {
@@ -14,4 +15,11 @@ export interface IInitalState {
 
 export interface IIntialStateProducts extends IInitalState {
   data: IProduct[];
+}
+
+export interface IIntialStateCart extends IInitalState {
+  data: {
+    product: IProduct;
+    amount: number;
+  };
 }

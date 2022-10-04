@@ -11,6 +11,7 @@ import storage from "redux-persist/lib/storage";
 import thunk, { ThunkDispatch } from "redux-thunk";
 
 import productsReducer from "./productsSlice";
+import cartsReducer from "./cartSlice";
 
 const logger = createLogger();
 
@@ -21,6 +22,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   products: productsReducer,
+  carts: cartsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

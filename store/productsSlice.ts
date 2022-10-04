@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { Products } from "@/utils/Constans";
+import { createSlice } from "@reduxjs/toolkit";
+import { Products } from "@/utils/Constants";
 import { IIntialStateProducts } from "@/utils/Types";
 
 const initialState: IIntialStateProducts = {

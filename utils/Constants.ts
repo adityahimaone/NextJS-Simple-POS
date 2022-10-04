@@ -1,7 +1,10 @@
+import { useId } from "react";
+
 import { IProduct } from "./Types";
 
 export const Products: IProduct[] = [
   {
+    id: 1,
     name: "oval hat",
     type: "hats",
     prices: [
@@ -16,6 +19,7 @@ export const Products: IProduct[] = [
     ],
   },
   {
+    id: 2,
     name: "square hat",
     type: "hats",
     prices: [
@@ -34,6 +38,7 @@ export const Products: IProduct[] = [
     ],
   },
   {
+    id: 3,
     name: "magic shirt",
     type: "tops",
     prices: [

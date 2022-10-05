@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import type { NextPage } from "next";
-import Image from "next/image";
+import { useEffect } from 'react';
+import type { NextPage } from 'next';
+import Image from 'next/image';
 
-import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import LayoutWithAside from "@/components/layouts/WithAside";
-import CardProduct from "@/components/CardProduct";
-import { getDataProducts } from "@/store/productsSlice";
-import { getDataTransactions } from "@/store/transactionsSlice";
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import LayoutWithAside from '@/components/layouts/WithAside';
+import CardProduct from '@/components/CardProduct';
+import { getDataProducts } from '@/store/productsSlice';
+import { getDataTransactions } from '@/store/transactionsSlice';
 
 const Home: NextPage = () => {
   const dispatch = useAppDispatch();

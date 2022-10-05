@@ -57,37 +57,23 @@
       ]
     },
     {
-      "name": "T Shirt",
+      "name": "T Shirt update",
       "type": "tops",
-      "price": [
-        {
-          "priceFor": "regular",
-          "price": "90000"
-        },
-        {
-          "priceFor": "VIP",
-          "price": "70000"
-        },
-        {
-          "priceFor": "wholesale",
-          "price": "60000"
-        }
-      ],
-      "id": 270702,
       "prices": [
         {
           "priceFor": "regular",
-          "price": 90000
+          "price": 91000
         },
         {
           "priceFor": "VIP",
-          "price": 70000
+          "price": 71000
         },
         {
           "priceFor": "wholesale",
-          "price": 60000
+          "price": 61000
         }
-      ]
+      ],
+      "id": 270702
     }
   ],
   "Buyers": [

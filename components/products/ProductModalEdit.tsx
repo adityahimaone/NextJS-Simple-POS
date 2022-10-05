@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 
 import Modal from '../UI/Modal';
@@ -7,16 +7,18 @@ import Button from '../UI/Form/Button';
 import InputSelect from '../UI/Form/InputSelect';
 import { OptionsBuyer, OptionsProductType } from '@/utils/Constants';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
-import { addDataProduct } from '@/store/productsSlice';
+import { getDataProductsByID, editDataProduct } from '@/store/productsSlice';
+import { IProduct } from '@/utils/Types';
 
-interface IProductModalAdd {
+interface IProductModalEdit {
   onClose: () => void;
+  id: number;
 }
 
-function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
+function ProductModalEdit({ onClose, id }: IProductModalEdit): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const formikFormCreateProduct = useFormik({
+  const formikFormEditProduct = useFormik({
     initialValues: {
       name: '',
       type: 'hats',
@@ -28,7 +30,6 @@ function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
       ],
     },
     onSubmit: (values) => {
-      const id = Math.floor(Math.random() * 1000000);
       const newValues = {
         ...values,
         id,
@@ -37,38 +38,55 @@ function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
           price: parseInt(price.price),
         })),
       };
-      dispatch(addDataProduct(newValues));
+      dispatch(editDataProduct(newValues));
       onClose();
     },
   });
 
+  useEffect(() => {
+    const newId = id.toString();
+    const getData = dispatch(getDataProductsByID(newId));
+    getData.then((res) => {
+      const data: unknown = res.payload;
+      const newData: IProduct = data as IProduct;
+      formikFormEditProduct.setValues({
+        name: newData.name,
+        type: newData.type,
+        prices: newData.prices.map((price) => ({
+          priceFor: price.priceFor,
+          price: price.price.toString(),
+        })),
+      });
+    });
+  }, [id]);
+
   return (
-    <Modal onClose={onClose} title="Add Product">
-      <form onSubmit={formikFormCreateProduct.handleSubmit}>
+    <Modal onClose={onClose} title="Edit Product">
+      <form onSubmit={formikFormEditProduct.handleSubmit}>
         <InputText
           label="Name"
           name="name"
           placeholder="Product name"
-          value={formikFormCreateProduct.values.name}
-          onChange={formikFormCreateProduct.handleChange}
+          value={formikFormEditProduct.values.name}
+          onChange={formikFormEditProduct.handleChange}
         />
         <InputSelect
           label="Type"
           name="type"
-          value={formikFormCreateProduct.values.type}
-          onChange={formikFormCreateProduct.handleChange}
+          value={formikFormEditProduct.values.type}
+          onChange={formikFormEditProduct.handleChange}
           options={OptionsProductType}
         />
         {/* input text price array */}
         <div className="bg-slate-100 p-2 rounded-md mb-2">
-          {formikFormCreateProduct.values.prices.map((price, index) => (
+          {formikFormEditProduct.values.prices.map((price, index) => (
             <div key={index} className="flex space-x-2">
               <div className="flex-1">
                 <InputSelect
                   label="Price For"
                   name={`prices[${index}].priceFor`}
                   value={price.priceFor}
-                  onChange={formikFormCreateProduct.handleChange}
+                  onChange={formikFormEditProduct.handleChange}
                   options={OptionsBuyer}
                 />
               </div>
@@ -78,7 +96,7 @@ function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
                   name={`prices[${index}].price`}
                   placeholder="Price"
                   value={price.price}
-                  onChange={formikFormCreateProduct.handleChange}
+                  onChange={formikFormEditProduct.handleChange}
                 />
               </div>
               <div className="flex items-center">
@@ -86,9 +104,9 @@ function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
                   type="button"
                   className="bg-red-500 text-white rounded-md px-2 py-1"
                   onClick={() => {
-                    const priceArray = formikFormCreateProduct.values.prices;
+                    const priceArray = formikFormEditProduct.values.prices;
                     priceArray.splice(index, 1);
-                    formikFormCreateProduct.setFieldValue('prices', priceArray);
+                    formikFormEditProduct.setFieldValue('prices', priceArray);
                   }}
                 >
                   Remove
@@ -100,8 +118,8 @@ function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
             <Button
               type="button"
               onClick={() =>
-                formikFormCreateProduct.setFieldValue('prices', [
-                  ...formikFormCreateProduct.values.prices,
+                formikFormEditProduct.setFieldValue('prices', [
+                  ...formikFormEditProduct.values.prices,
                   { priceFor: '', price: '' },
                 ])
               }
@@ -118,4 +136,4 @@ function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
   );
 }
 
-export default ProductModalCreate;
+export default ProductModalEdit;

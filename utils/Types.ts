@@ -15,6 +15,7 @@ export interface IInitalState {
 
 export interface IIntialStateProducts extends IInitalState {
   data: IProduct[];
+  dataById: IProduct;
 }
 
 export interface IIntialStateCart extends IInitalState {

@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import LayoutDefault from '@/components/layouts/Default';
 import ButtonIcon from '@/components/UI/Form/ButtonIcon';
 import ProductModalCreate from '@/components/products/ProductModalCreate';
+import ProductModalEdit from '@/components/products/ProductModalEdit';
 import Button from '@/components/UI/Form/Button';
 import { getDataProducts } from '@/store/productsSlice';
 
@@ -16,6 +17,7 @@ const Products: NextPage = () => {
   const products = useAppSelector((state) => state.products);
   const { data } = products;
 
+  const [id, setId] = useState<number>(0);
   const [showModalAddProduct, setShowModalAddProduct] = useState<boolean>(false);
   const [showModalEditProduct, setShowModalEditProduct] = useState<boolean>(false);
   const [showModalDeleteProduct, setShowModalDeleteProduct] = useState<boolean>(false);
@@ -26,6 +28,15 @@ const Products: NextPage = () => {
 
   const handleHideModalAddProduct = () => {
     setShowModalAddProduct(false);
+  };
+
+  const handleShowModalEditProduct = (id: number | string) => {
+    setId(parseInt(id.toString()));
+    setShowModalEditProduct(true);
+  };
+
+  const handleHideModalEditProduct = () => {
+    setShowModalEditProduct(false);
   };
 
   useEffect(() => {
@@ -40,6 +51,7 @@ const Products: NextPage = () => {
   return (
     <>
       {showModalAddProduct && <ProductModalCreate onClose={handleHideModalAddProduct} />}
+      {showModalEditProduct && <ProductModalEdit id={id} onClose={handleHideModalEditProduct} />}
       <LayoutDefault>
         <div className="mx-auto max-w-screen-lg">
           <div className="mb-2 flex justify-between">
@@ -74,7 +86,7 @@ const Products: NextPage = () => {
                   </td>
                   <td>
                     <div className="flex space-x-2">
-                      <ButtonIcon>
+                      <ButtonIcon onClick={() => handleShowModalEditProduct(product.id)}>
                         <PencilIcon className="h-4 w-4" />
                       </ButtonIcon>
                       <ButtonIcon>

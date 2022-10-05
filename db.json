@@ -1,0 +1,325 @@
+{
+  "Items": [
+    {
+      "id": 1,
+      "name": "oval hat",
+      "type": "hats",
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 20000
+        },
+        {
+          "priceFor": "VIP",
+          "price": 15000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "square hat",
+      "type": "hats",
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 30000
+        },
+        {
+          "priceFor": "VIP",
+          "price": 20000
+        },
+        {
+          "priceFor": "wholesale",
+          "price": 15000
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "magic shirt",
+      "type": "tops",
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 50000
+        }
+      ]
+    },
+    {
+      "name": "Space Hats",
+      "type": "hats",
+      "prices": [
+        {
+          "priceFor": "VIP",
+          "price": 1000
+        }
+      ],
+      "id": 633643
+    },
+    {
+      "name": "Pirates Hat",
+      "type": "hats",
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 80000
+        },
+        {
+          "priceFor": "VIP",
+          "price": 70000
+        },
+        {
+          "priceFor": "wholesale",
+          "price": 65000
+        }
+      ],
+      "id": 506107
+    }
+  ],
+  "Buyers": [
+    {
+      "id": 1,
+      "name": "Ani",
+      "type": "regular"
+    },
+    {
+      "id": 2,
+      "name": "Budi",
+      "type": "VIP"
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "type": "regular"
+    },
+    {
+      "id": 4,
+      "name": "Dipta",
+      "type": "wholesale"
+    },
+    {
+      "name": "Ramadhan",
+      "type": "wholesale",
+      "id": 899276
+    },
+    {
+      "name": "Adit",
+      "type": "VIP",
+      "id": 637252
+    }
+  ],
+  "Transaction": [
+    {
+      "id": 1,
+      "item": "magic shirt",
+      "qty": 1,
+      "buyer": "Ani"
+    },
+    {
+      "id": 2,
+      "item": "square hat",
+      "qty": 2,
+      "buyer": "Budi"
+    },
+    {
+      "id": 3,
+      "item": "magic shirt",
+      "qty": 1,
+      "buyer": "Ani"
+    },
+    {
+      "id": 4,
+      "item": "oval hat",
+      "qty": 1,
+      "buyer": "Ani"
+    },
+    {
+      "id": 5,
+      "item": "square hat",
+      "qty": 100,
+      "buyer": "Dipta"
+    },
+    {
+      "id": 208377543,
+      "item": "oval hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 929912703,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 507417010,
+      "item": "oval hat",
+      "qty": 6,
+      "buyer": "Dipta"
+    },
+    {
+      "id": 381348423,
+      "item": "oval hat",
+      "qty": 3,
+      "buyer": "Budi"
+    },
+    {
+      "id": 846391807,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 545045395,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 939983286,
+      "item": "square hat",
+      "qty": 6,
+      "buyer": "Charlie"
+    },
+    {
+      "id": 58975611,
+      "item": "square hat",
+      "qty": 6,
+      "buyer": "Charlie"
+    },
+    {
+      "id": 862379628,
+      "item": "square hat",
+      "qty": 6,
+      "buyer": "Charlie"
+    },
+    {
+      "id": 357438268,
+      "item": "square hat",
+      "qty": 6,
+      "buyer": "Charlie"
+    },
+    {
+      "id": 656810150,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 864800038,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Charlie"
+    },
+    {
+      "id": 985194715,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 828780763,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 462772205,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 379893972,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Charlie"
+    },
+    {
+      "id": 501001898,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 993621927,
+      "item": "square hat",
+      "qty": 4,
+      "buyer": "Budi"
+    },
+    {
+      "id": 357897684,
+      "item": "square hat",
+      "qty": 7,
+      "buyer": "Dipta"
+    },
+    {
+      "id": 707946145,
+      "item": "square hat",
+      "qty": 7,
+      "buyer": "Budi"
+    },
+    {
+      "id": 454902594,
+      "item": "magic shirt 2",
+      "qty": 3,
+      "buyer": "Budi"
+    },
+    {
+      "id": 857783112,
+      "item": "oval hat",
+      "qty": 1,
+      "buyer": "Budi"
+    },
+    {
+      "id": 987497131,
+      "item": "magic shirt",
+      "qty": 3,
+      "buyer": "Charlie"
+    },
+    {
+      "id": 233179500,
+      "item": "square hat",
+      "qty": 3,
+      "buyer": "Dipta"
+    },
+    {
+      "id": 690966596,
+      "item": "square hat",
+      "qty": 3,
+      "buyer": "Dipta"
+    },
+    {
+      "id": 960247964,
+      "item": "magic shirt 2",
+      "qty": 1,
+      "buyer": "Ramadhan"
+    },
+    {
+      "id": 454828540,
+      "item": "oval hat",
+      "qty": 3,
+      "buyer": "Ani"
+    },
+    {
+      "id": 848252553,
+      "item": "oval hat",
+      "qty": 5,
+      "buyer": "Budi"
+    },
+    {
+      "id": 258775827,
+      "item": "Pirates Hat",
+      "qty": 2,
+      "buyer": "Adit"
+    }
+  ],
+  "Summary": {
+    "totalTransaction": 34,
+    "bestSellingItem": "square hat",
+    "bestSellingCategory": "hats",
+    "revenue": 6570000,
+    "rpc": [],
+    "bestSpenders": []
+  }
+}

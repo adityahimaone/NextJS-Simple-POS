@@ -39,13 +39,13 @@ const Summary: NextPage = () => {
         itemsObj[item] += 1;
       }
       //   best selling category
-      const productObj = products.data.filter((product) => product.name === item)[0];
-      const { type } = productObj;
-      if (categoriesObj[type] === undefined) {
-        categoriesObj[type] = 1;
-      } else {
-        categoriesObj[type] += 1;
-      }
+      // const productObj = products.data.filter((product) => product.name === item)[0];
+      // const { type } = productObj;
+      // if (categoriesObj[type] === undefined) {
+      //   categoriesObj[type] = 1;
+      // } else {
+      //   categoriesObj[type] += 1;
+      // }
     });
 
     for (let key in itemsObj) {
@@ -75,9 +75,6 @@ const Summary: NextPage = () => {
     return (revenueOfTheDay = sum);
   };
 
-  getRevenueOfTheDay();
-
-  getBestSellingAndCategory();
   console.log(bestSellingItemKey, 'bestSellingItemKey');
   console.log(bestSellingCategoryKey, 'bestSellingCategoryKey');
   console.log(revenueOfTheDay, 'revenueOfTheDay');
@@ -87,6 +84,12 @@ const Summary: NextPage = () => {
   useEffect(() => {
     dispatch(getDataSummary());
   }, []);
+
+  useEffect(() => {
+    getRevenueOfTheDay();
+    getBestSellingAndCategory();
+  }, [products, transactions, buyers, summary]);
+
   return (
     <LayoutDefault>
       <div className="mx-auto max-w-screen-lg">

@@ -85,6 +85,11 @@
       "id": 4,
       "name": "Dipta",
       "type": "wholesale"
+    },
+    {
+      "name": "Ramadhan",
+      "type": "wholesale",
+      "id": 899276
     }
   ],
   "Transaction": [
@@ -327,6 +332,12 @@
       "item": "square hat",
       "qty": 3,
       "buyer": "Dipta"
+    },
+    {
+      "id": 960247964,
+      "item": "magic shirt 2",
+      "qty": 1,
+      "buyer": "Ramadhan"
     }
   ],
   "Summary": {

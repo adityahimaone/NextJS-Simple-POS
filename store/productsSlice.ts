@@ -64,7 +64,6 @@ export const products = createSlice({
         state.loading = false;
         state.error = action.error.message;
       });
-
     builder
       .addCase(addDataProduct.pending, (state) => {
         state.loading = true;
@@ -87,6 +86,19 @@ export const products = createSlice({
         state.data[index] = action.payload;
       })
       .addCase(editDataProduct.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+    builder
+      .addCase(deleteDataProduct.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteDataProduct.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        const index = state.data.findIndex((item: IProduct) => item.id === action.payload.id);
+        state.data.splice(index, 1);
+      })
+      .addCase(deleteDataProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

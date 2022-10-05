@@ -27,7 +27,11 @@ function Header(): JSX.Element {
                     <a>Products</a>
                   </Link>
                 </li>
-                <li>Buyer</li>
+                <li>
+                  <Link href="/buyers">
+                    <a>Buyers</a>
+                  </Link>
+                </li>
                 <li>
                   <Link href="/summary">
                     <a>Report Summary</a>

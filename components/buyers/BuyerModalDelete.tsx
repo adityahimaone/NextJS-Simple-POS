@@ -1,29 +1,28 @@
 import React from 'react';
 
 import Modal from '../UI/Modal';
-import { useAppDispatch } from '@/store/hooks';
-import { deleteDataProduct, getDataProducts } from '@/store/productsSlice';
 import Button from '../UI/Form/Button';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { deleteDataBuyer, getDataBuyers } from '@/store/buyerSlice';
 
-interface IProductModalDelete {
+interface IBuyerModalDelete {
   onClose: () => void;
   id: number;
 }
 
-function ProductModalDelete({ onClose, id }: IProductModalDelete): JSX.Element {
+function BuyerModalDelete({ onClose, id }: IBuyerModalDelete): JSX.Element {
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
     const newId = id.toString();
-    dispatch(deleteDataProduct(newId));
-    dispatch(getDataProducts());
+    dispatch(deleteDataBuyer(newId));
+    dispatch(getDataBuyers());
     onClose();
   };
-
   return (
-    <Modal onClose={onClose} title="Delete Product">
+    <Modal onClose={onClose} title="Delete Buyer">
       <div>
-        <h1 className="text-center text-lg font-semibold">Are you sure to delete this product?</h1>
+        <h1 className="text-center text-lg font-semibold">Are you sure to delete this buyer?</h1>
       </div>
       <div className="flex justify-end space-x-2 mt-5">
         <Button onClick={handleDelete} type="button">
@@ -37,4 +36,4 @@ function ProductModalDelete({ onClose, id }: IProductModalDelete): JSX.Element {
   );
 }
 
-export default ProductModalDelete;
+export default BuyerModalDelete;

@@ -9,11 +9,11 @@ import { OptionsBuyer, OptionsProductType } from '@/utils/Constants';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { addDataProduct } from '@/store/productsSlice';
 
-interface IProductModalAdd {
+interface IProductModalCreate {
   onClose: () => void;
 }
 
-function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
+function ProductModalCreate({ onClose }: IProductModalCreate): JSX.Element {
   const dispatch = useAppDispatch();
 
   const formikFormCreateProduct = useFormik({
@@ -59,7 +59,6 @@ function ProductModalCreate({ onClose }: IProductModalAdd): JSX.Element {
           onChange={formikFormCreateProduct.handleChange}
           options={OptionsProductType}
         />
-        {/* input text price array */}
         <div className="bg-slate-100 p-2 rounded-md mb-2">
           {formikFormCreateProduct.values.prices.map((price, index) => (
             <div key={index} className="flex space-x-2">

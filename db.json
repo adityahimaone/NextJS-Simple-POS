@@ -46,17 +46,6 @@
       ]
     },
     {
-      "id": 4,
-      "name": "magic shirt 2",
-      "type": "tops",
-      "prices": [
-        {
-          "priceFor": "regular",
-          "price": 50000
-        }
-      ]
-    },
-    {
       "name": "T Shirt update",
       "type": "tops",
       "prices": [

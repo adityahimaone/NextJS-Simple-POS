@@ -20,7 +20,7 @@ const Backdrop = ({ onClose }: IBackdrop) => {
 
 const ModalOverlay = ({ children }: IModalOverlay) => {
   return (
-    <div className="fixed top-[10vh] left-[5%] w-[90%] overflow-y-auto  min-h-[65vh] max-h-[70vh] lg:w-[40rem] lg:left-[calc(50%_-_20rem)] bg-white p-[1rem] overflow-hidden rounded-md drop-shadow-md z-30 transition-all">
+    <div className="fixed top-[10vh] left-[5%] w-[90%] overflow-y-auto  min-h-fit max-h-[70vh] lg:w-[40rem] lg:left-[calc(50%_-_20rem)] bg-white p-[1rem] overflow-hidden rounded-md drop-shadow-md z-30 transition-all">
       <div>{children}</div>
     </div>
   );

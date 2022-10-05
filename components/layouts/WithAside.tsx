@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Header from "@/components/UI/Header";
 import Footer from "@/components/UI/Footer";
 import Aside from "@/components/UI/Aside";
-import Checkout from "@/components/Checkout/CheckoutModal";
+import Checkout from "@/components/checkout/CheckoutModal";
 
 interface ILayoutWithAside {
   children: React.ReactNode;

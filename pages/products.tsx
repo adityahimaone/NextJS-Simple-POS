@@ -8,6 +8,7 @@ import LayoutDefault from '@/components/layouts/Default';
 import ButtonIcon from '@/components/UI/Form/ButtonIcon';
 import ProductModalCreate from '@/components/products/ProductModalCreate';
 import ProductModalEdit from '@/components/products/ProductModalEdit';
+import ProductModalDelete from '@/components/products/ProductModalDelete';
 import Button from '@/components/UI/Form/Button';
 import { getDataProducts } from '@/store/productsSlice';
 
@@ -39,6 +40,15 @@ const Products: NextPage = () => {
     setShowModalEditProduct(false);
   };
 
+  const handleShowModalDeleteProduct = (id: number | string) => {
+    setId(parseInt(id.toString()));
+    setShowModalDeleteProduct(true);
+  };
+
+  const handleHideModalDeleteProduct = () => {
+    setShowModalDeleteProduct(false);
+  };
+
   useEffect(() => {
     dispatch(getDataProducts());
   }, []);
@@ -52,6 +62,7 @@ const Products: NextPage = () => {
     <>
       {showModalAddProduct && <ProductModalCreate onClose={handleHideModalAddProduct} />}
       {showModalEditProduct && <ProductModalEdit id={id} onClose={handleHideModalEditProduct} />}
+      {showModalDeleteProduct && <ProductModalDelete id={id} onClose={handleHideModalDeleteProduct} />}
       <LayoutDefault>
         <div className="mx-auto max-w-screen-lg">
           <div className="mb-2 flex justify-between">
@@ -89,7 +100,7 @@ const Products: NextPage = () => {
                       <ButtonIcon onClick={() => handleShowModalEditProduct(product.id)}>
                         <PencilIcon className="h-4 w-4" />
                       </ButtonIcon>
-                      <ButtonIcon>
+                      <ButtonIcon onClick={() => handleShowModalDeleteProduct(product.id)}>
                         <TrashIcon className="h-4 w-4" />
                       </ButtonIcon>
                     </div>

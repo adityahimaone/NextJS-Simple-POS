@@ -106,7 +106,7 @@ const Summary: NextPage = () => {
             <div className="flex items-center">Revenue per Category</div>
             <div className="flex space-x-2 items-center">
               <span> : </span>
-              {rpc.map((item) => (
+              {rpc?.map((item) => (
                 <div className="flex p-1 bg-slate-300 rounded-md space-x-2" key={item.category}>
                   <div>{item.category}</div>
                   <div>{item.revenue}</div>
@@ -116,7 +116,7 @@ const Summary: NextPage = () => {
             <div>Three Most Spender Customer</div>
             <div className="flex space-x-2 items-center">
               <span> : </span>
-              {bestSpenders.map((item) => (
+              {bestSpenders?.map((item) => (
                 <div className="flex p-1 bg-slate-300 rounded-md space-x-2" key={item.name}>
                   <div>{item.name}</div>
                   <div>{item.type}</div>

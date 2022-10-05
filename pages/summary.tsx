@@ -3,9 +3,10 @@ import type { NextPage } from 'next';
 
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import LayoutDefault from '@/components/layouts/Default';
-import { getDataSummary } from '@/store/summarySlice';
+import { getDataSummary, addDataSummary } from '@/store/summarySlice';
 import { getDataProducts } from '@/store/productsSlice';
 import transformCurrency from '@/utils/helper/transformCurrency';
+import { ISummary } from '@/utils/Types';
 
 const Summary: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ const Summary: NextPage = () => {
   const products = useAppSelector((state) => state.products);
 
   const { data } = transactions;
+  const { totalTransaction, bestSellingItem, bestSellingCategory, revenue, rpc, bestSpenders } = summary.data;
 
   let bestSellingItemKey = '';
   let bestSellingCategoryKey = '';
@@ -85,8 +87,6 @@ const Summary: NextPage = () => {
   // console.log(bestSellingCategoryKey, 'bestSellingCategoryKey');
   // console.log(revenueOfTheDay, 'revenueOfTheDay');
 
-  const { totalTransaction, bestSellingItem, bestSellingCategory, revenue, rpc, bestSpenders } = summary.data;
-
   useEffect(() => {
     dispatch(getDataSummary());
     dispatch(getDataProducts());
@@ -97,6 +97,20 @@ const Summary: NextPage = () => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (data.length > 0) {
+      const newSummary: ISummary = {
+        totalTransaction: data.length,
+        bestSellingItem: bestSellingItemKey,
+        bestSellingCategory: bestSellingCategoryKey,
+        revenue: revenueOfTheDay,
+        rpc: [],
+        bestSpenders: [],
+      };
+      dispatch(addDataSummary(newSummary));
+    }
+  }, [data, bestSellingItemKey, bestSellingCategoryKey, revenueOfTheDay]);
+
   return (
     <LayoutDefault>
       <div className="mx-auto max-w-screen-lg">
@@ -106,13 +120,13 @@ const Summary: NextPage = () => {
         <div>
           <div className="grid grid-cols-2 gap-x-5 gap-y-2">
             <div>Total Transaction</div>
-            <div> : {data.length}</div>
+            <div> : {totalTransaction}</div>
             <div>Best Selling Item </div>
-            <div> : {bestSellingItemKey}</div>
+            <div> : {bestSellingItem}</div>
             <div>Best Selling Category</div>
-            <div> : {bestSellingCategoryKey}</div>
+            <div> : {bestSellingCategory}</div>
             <div>Revenue of the Day</div>
-            <div> : {transformCurrency(revenueOfTheDay)}</div>
+            <div> : {transformCurrency(revenue)}</div>
             <div className="flex items-center">Revenue per Category</div>
             <div className="flex space-x-2 items-center">
               <span> : </span>

@@ -101,6 +101,11 @@
       "name": "Ramadhan",
       "type": "wholesale",
       "id": 899276
+    },
+    {
+      "name": "Adit",
+      "type": "VIP",
+      "id": 637252
     }
   ],
   "Transaction": [
@@ -301,43 +306,20 @@
       "item": "oval hat",
       "qty": 5,
       "buyer": "Budi"
+    },
+    {
+      "id": 258775827,
+      "item": "Pirates Hat",
+      "qty": 2,
+      "buyer": "Adit"
     }
   ],
   "Summary": {
-    "totalTransaction": 5,
+    "totalTransaction": 34,
     "bestSellingItem": "square hat",
     "bestSellingCategory": "hats",
-    "rpc": [
-      {
-        "category": "hats",
-        "revenue": 1560000
-      },
-      {
-        "category": "tops",
-        "revenue": 100000
-      },
-      {
-        "category": "shorts",
-        "revenue": 0
-      }
-    ],
-    "revenue": 1660000,
-    "bestSpenders": [
-      {
-        "name": "Dipta",
-        "type": "wholesale",
-        "spent": 1500000
-      },
-      {
-        "name": "Ani",
-        "type": "regular",
-        "spent": 120000
-      },
-      {
-        "name": "Budi",
-        "type": "VIP",
-        "spent": 40000
-      }
-    ]
+    "revenue": 6570000,
+    "rpc": [],
+    "bestSpenders": []
   }
 }

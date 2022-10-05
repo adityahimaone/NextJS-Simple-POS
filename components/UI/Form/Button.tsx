@@ -1,24 +1,25 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
 interface IButton {
   children: React.ReactNode;
   onClick?: () => void;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   full: boolean;
+  disabled: boolean;
 }
 
-function Button({ children, onClick, type, full }: IButton): JSX.Element {
+function Button({ children, onClick, type, full, disabled }: IButton): JSX.Element {
   const buttonClasses = classNames(
-    "bg-orange-600 text-white rounded-md px-3 py-1.5 flex justify-center items-baseline",
+    'bg-orange-600 text-white rounded-md px-3 py-1.5 flex justify-center items-baseline disabled:opacity-50 disabled:cursor-not-allowed hover:bg-orange-500',
     {
-      "w-full": full,
-      "w-fit": !full,
-    }
+      'w-full': full,
+      'w-fit': !full,
+    },
   );
 
   return (
-    <button type={type} onClick={onClick} className={buttonClasses}>
+    <button type={type} disabled={disabled} onClick={onClick} className={buttonClasses}>
       {children}
     </button>
   );
@@ -26,7 +27,8 @@ function Button({ children, onClick, type, full }: IButton): JSX.Element {
 
 Button.defaultProps = {
   full: false,
-  type: "button",
+  type: 'button',
+  disabled: false,
 };
 
 export default Button;

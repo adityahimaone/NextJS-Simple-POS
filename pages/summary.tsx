@@ -4,6 +4,8 @@ import type { NextPage } from 'next';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import LayoutDefault from '@/components/layouts/Default';
 import { getDataSummary } from '@/store/summarySlice';
+import { getDataProducts } from '@/store/productsSlice';
+import transformCurrency from '@/utils/helper/transformCurrency';
 
 const Summary: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -11,8 +13,6 @@ const Summary: NextPage = () => {
   const transactions = useAppSelector((state) => state.transactions);
   const buyers = useAppSelector((state) => state.buyers);
   const products = useAppSelector((state) => state.products);
-
-  console.log(transactions, 'transactions');
 
   const { data } = transactions;
 
@@ -39,13 +39,15 @@ const Summary: NextPage = () => {
         itemsObj[item] += 1;
       }
       //   best selling category
-      // const productObj = products.data.filter((product) => product.name === item)[0];
-      // const { type } = productObj;
-      // if (categoriesObj[type] === undefined) {
-      //   categoriesObj[type] = 1;
-      // } else {
-      //   categoriesObj[type] += 1;
-      // }
+      const productObj = products.data.find((product) => product.name === item);
+      if (productObj) {
+        const { type } = productObj;
+        if (categoriesObj[type] === undefined) {
+          categoriesObj[type] = 1;
+        } else {
+          categoriesObj[type] += 1;
+        }
+      }
     });
 
     for (let key in itemsObj) {
@@ -60,6 +62,7 @@ const Summary: NextPage = () => {
         bestSellingCategoryKey = key;
       }
     }
+    return { bestSellingItemKey, bestSellingCategoryKey };
   };
 
   const getRevenueOfTheDay = () => {
@@ -75,20 +78,24 @@ const Summary: NextPage = () => {
     return (revenueOfTheDay = sum);
   };
 
-  console.log(bestSellingItemKey, 'bestSellingItemKey');
-  console.log(bestSellingCategoryKey, 'bestSellingCategoryKey');
-  console.log(revenueOfTheDay, 'revenueOfTheDay');
+  getRevenueOfTheDay();
+  getBestSellingAndCategory();
+
+  // console.log(bestSellingItemKey, 'bestSellingItemKey');
+  // console.log(bestSellingCategoryKey, 'bestSellingCategoryKey');
+  // console.log(revenueOfTheDay, 'revenueOfTheDay');
 
   const { totalTransaction, bestSellingItem, bestSellingCategory, revenue, rpc, bestSpenders } = summary.data;
 
   useEffect(() => {
     dispatch(getDataSummary());
+    dispatch(getDataProducts());
   }, []);
 
   useEffect(() => {
-    getRevenueOfTheDay();
-    getBestSellingAndCategory();
-  }, [products, transactions, buyers, summary]);
+    if (data.length > 0) {
+    }
+  }, [data]);
 
   return (
     <LayoutDefault>
@@ -105,7 +112,7 @@ const Summary: NextPage = () => {
             <div>Best Selling Category</div>
             <div> : {bestSellingCategoryKey}</div>
             <div>Revenue of the Day</div>
-            <div> : {revenueOfTheDay}</div>
+            <div> : {transformCurrency(revenueOfTheDay)}</div>
             <div className="flex items-center">Revenue per Category</div>
             <div className="flex space-x-2 items-center">
               <span> : </span>
@@ -123,7 +130,7 @@ const Summary: NextPage = () => {
                 <div className="flex p-1 bg-slate-300 rounded-md space-x-2" key={item.name}>
                   <div>{item.name}</div>
                   <div>{item.type}</div>
-                  <div>{item.spent}</div>
+                  <div>{transformCurrency(item.spent)}</div>
                 </div>
               ))}
             </div>

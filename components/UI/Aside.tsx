@@ -25,9 +25,8 @@ function Aside({ onShowModal }: IAside): JSX.Element {
     dispatch(removeCart({ amount: 1 }));
   };
 
-  console.log(carts);
   const initPricePerItem = product.prices.filter((price) => price.priceFor === 'regular')[0]?.price;
-  const totalPrice = initPricePerItem * amount;
+  const totalPrice = (initPricePerItem * amount) | 0;
 
   return (
     <aside className="w-4/12 bg-slate-100 drop-shadow-lg relative">

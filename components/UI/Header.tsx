@@ -21,7 +21,7 @@ function Header(): JSX.Element {
               </span>
             </div>
             <div>
-              <ul className="flex flex-row space-x-2">
+              <ul className="flex flex-row text-white space-x-2">
                 <li>
                   <Link href="/products">
                     <a>Products</a>

@@ -46,23 +46,34 @@
       ]
     },
     {
-      "name": "T Shirt update",
-      "type": "tops",
+      "name": "Space Hats",
+      "type": "hats",
+      "prices": [
+        {
+          "priceFor": "VIP",
+          "price": 1000
+        }
+      ],
+      "id": 633643
+    },
+    {
+      "name": "Pirates Hat",
+      "type": "hats",
       "prices": [
         {
           "priceFor": "regular",
-          "price": 91000
+          "price": 80000
         },
         {
           "priceFor": "VIP",
-          "price": 71000
+          "price": 70000
         },
         {
           "priceFor": "wholesale",
-          "price": 61000
+          "price": 65000
         }
       ],
-      "id": 270702
+      "id": 506107
     }
   ],
   "Buyers": [
@@ -124,12 +135,6 @@
       "buyer": "Dipta"
     },
     {
-      "id": 121377137,
-      "item": "oval hat",
-      "qty": 4,
-      "buyer": ""
-    },
-    {
       "id": 208377543,
       "item": "oval hat",
       "qty": 4,
@@ -166,58 +171,16 @@
       "buyer": "Budi"
     },
     {
-      "id": 421539685,
-      "item": "square hat",
-      "qty": 6,
-      "buyer": ""
-    },
-    {
       "id": 939983286,
       "item": "square hat",
       "qty": 6,
       "buyer": "Charlie"
     },
     {
-      "id": 378013521,
-      "item": "square hat",
-      "qty": 6,
-      "buyer": ""
-    },
-    {
-      "id": 815092572,
-      "item": "square hat",
-      "qty": 6,
-      "buyer": ""
-    },
-    {
-      "id": 145654027,
-      "item": "square hat",
-      "qty": 6,
-      "buyer": ""
-    },
-    {
-      "id": 848094480,
-      "item": "square hat",
-      "qty": 6,
-      "buyer": ""
-    },
-    {
-      "id": 639120178,
-      "item": "square hat",
-      "qty": 6,
-      "buyer": ""
-    },
-    {
       "id": 58975611,
       "item": "square hat",
       "qty": 6,
       "buyer": "Charlie"
-    },
-    {
-      "id": 446524166,
-      "item": "square hat",
-      "qty": 6,
-      "buyer": ""
     },
     {
       "id": 862379628,
@@ -292,18 +255,6 @@
       "buyer": "Budi"
     },
     {
-      "id": 483055354,
-      "item": "square hat",
-      "qty": 7,
-      "buyer": ""
-    },
-    {
-      "id": 351731525,
-      "item": "square hat",
-      "qty": 7,
-      "buyer": ""
-    },
-    {
       "id": 454902594,
       "item": "magic shirt 2",
       "qty": 3,
@@ -338,6 +289,18 @@
       "item": "magic shirt 2",
       "qty": 1,
       "buyer": "Ramadhan"
+    },
+    {
+      "id": 454828540,
+      "item": "oval hat",
+      "qty": 3,
+      "buyer": "Ani"
+    },
+    {
+      "id": 848252553,
+      "item": "oval hat",
+      "qty": 5,
+      "buyer": "Budi"
     }
   ],
   "Summary": {

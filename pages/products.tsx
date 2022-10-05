@@ -11,6 +11,7 @@ import ProductModalEdit from '@/components/products/ProductModalEdit';
 import ProductModalDelete from '@/components/products/ProductModalDelete';
 import Button from '@/components/UI/Form/Button';
 import { getDataProducts } from '@/store/productsSlice';
+import transformCurrency from '@/utils/helper/transformCurrency';
 
 const Products: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -91,7 +92,7 @@ const Products: NextPage = () => {
                   <td className={TrowClass}>
                     {product.prices.map((price) => (
                       <span key={price.price} className="bg-slate-50 p-2 rounded-md mr-2">
-                        {price.priceFor} - {price.price}
+                        {price.priceFor} - {transformCurrency(price.price)}
                       </span>
                     ))}
                   </td>

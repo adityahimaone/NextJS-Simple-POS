@@ -3,7 +3,6 @@ import { useReactToPrint } from 'react-to-print';
 import classNames from 'classnames';
 
 import Modal from '../UI/Modal';
-import InputText from '../UI/Form/InputText';
 import InputSelect from '../UI/Form/InputSelect';
 import { Product } from '@/utils/Constants';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
@@ -26,14 +25,15 @@ function Checkout({ onClose }: ICheckout): JSX.Element {
   const carts = useAppSelector((state) => state.carts);
   const { product, amount } = carts.data;
 
-  const defaultPrice = product.prices.filter((price) => price.priceFor === 'regular')[0].price;
+  const defaultPrice = product.prices.filter((price) => price.priceFor === 'regular')[0]?.price;
 
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [showPrintLayout, setShowPrintLayout] = useState<boolean>(false);
   const [price, setPrice] = useState<number>(defaultPrice);
   const [checkoutData, setCheckoutData] = useState<ICheckoutData>({
     buyer: {
-      id: '',
-      name: '',
+      id: 1,
+      name: 'Ani',
       type: 'regular',
     },
     product: product ? product : ({} as typeof Product),
@@ -109,6 +109,12 @@ function Checkout({ onClose }: ICheckout): JSX.Element {
     onClose();
   };
 
+  useEffect(() => {
+    if (defaultPrice === NaN || defaultPrice === undefined) {
+      setButtonDisabled(true);
+    }
+  }, [defaultPrice]);
+
   return (
     <>
       <Modal onClose={onClose} title="Checkout">
@@ -123,8 +129,17 @@ function Checkout({ onClose }: ICheckout): JSX.Element {
             />
           </div>
           <CheckoutSummary product={product} price={price} amount={amount} checkoutData={checkoutData} />
+          <div className="my-2 flex">
+            {buttonDisabled && (
+              <span className="p-2 w-full text-sm text-center bg-red-200 border border-dashed border-red-400 rounded-md">
+                Can't checkout because product dont have regular price
+              </span>
+            )}
+          </div>
           <div className="flex justify-end">
-            <Button type="submit">Generate Invoice</Button>
+            <Button type="submit" disabled={buttonDisabled}>
+              Generate Invoice
+            </Button>
           </div>
         </form>
       </Modal>

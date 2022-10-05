@@ -27,7 +27,10 @@ function CardProduct({ ...product }: ICardProduct): JSX.Element {
     dispatch(addCart({ product, amount: 1 }));
   };
 
-  const newPrice = prices.filter(({ priceFor }) => priceFor === 'regular').map(({ price }) => price)[0];
+  let newPrice = prices.filter(({ priceFor }) => priceFor === 'regular').map(({ price }) => price)[0];
+  if (newPrice === undefined) {
+    newPrice = 0;
+  }
 
   return (
     <div

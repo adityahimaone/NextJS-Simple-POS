@@ -55,6 +55,39 @@
           "price": 50000
         }
       ]
+    },
+    {
+      "name": "T Shirt",
+      "type": "tops",
+      "price": [
+        {
+          "priceFor": "regular",
+          "price": "90000"
+        },
+        {
+          "priceFor": "VIP",
+          "price": "70000"
+        },
+        {
+          "priceFor": "wholesale",
+          "price": "60000"
+        }
+      ],
+      "id": 270702,
+      "prices": [
+        {
+          "priceFor": "regular",
+          "price": 90000
+        },
+        {
+          "priceFor": "VIP",
+          "price": 70000
+        },
+        {
+          "priceFor": "wholesale",
+          "price": 60000
+        }
+      ]
     }
   ],
   "Buyers": [
@@ -307,6 +340,18 @@
       "item": "magic shirt",
       "qty": 3,
       "buyer": "Charlie"
+    },
+    {
+      "id": 233179500,
+      "item": "square hat",
+      "qty": 3,
+      "buyer": "Dipta"
+    },
+    {
+      "id": 690966596,
+      "item": "square hat",
+      "qty": 3,
+      "buyer": "Dipta"
     }
   ],
   "Summary": {

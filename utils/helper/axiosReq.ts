@@ -9,7 +9,7 @@ const api = axios.create({
   },
 });
 
-const request = <T,>(
+const request = <T>(
   method: Method,
   url: string,
   data?: any

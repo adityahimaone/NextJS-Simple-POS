@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface IButtonIcon {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ function ButtonIcon({ children, onClick }: IButtonIcon): JSX.Element {
   return (
     <button
       type="button"
-      className="px-4 py-0.5 flex text-lg justify-center items-center rounded-md border border-amber-500"
+      className="px-2 py-0.5 flex text-lg justify-center items-center rounded-md border border-amber-500"
       onClick={onClick}
     >
       {children}

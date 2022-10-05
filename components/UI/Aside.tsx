@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
+import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid';
 
-import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import { addCart, removeCart } from "@/store/cartSlice";
-import Button from "./Form/Button";
-import ButtonIcon from "./Form/ButtonIcon";
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { addCart, removeCart } from '@/store/cartSlice';
+import Button from './Form/Button';
+import ButtonIcon from './Form/ButtonIcon';
+import transformCurrency from '@/utils/helper/transformCurrency';
 
 interface IAside {
   onShowModal: () => void;
@@ -24,9 +26,8 @@ function Aside({ onShowModal }: IAside): JSX.Element {
   };
 
   console.log(carts);
-  const initPrice = product.prices.filter(
-    (price) => price.priceFor === "regular"
-  )[0]?.price;
+  const initPricePerItem = product.prices.filter((price) => price.priceFor === 'regular')[0]?.price;
+  const totalPrice = initPricePerItem * amount;
 
   return (
     <aside className="w-4/12 bg-slate-100 drop-shadow-lg relative">
@@ -44,10 +45,14 @@ function Aside({ onShowModal }: IAside): JSX.Element {
               <div className="w- space-y-2">
                 <div className="flex space-x-2">
                   <div>
-                    <ButtonIcon onClick={addAmountCart}>+</ButtonIcon>
+                    <ButtonIcon onClick={addAmountCart}>
+                      <PlusIcon className="w-5 h-5" />
+                    </ButtonIcon>
                   </div>
                   <div>
-                    <ButtonIcon onClick={removeAmountCart}>-</ButtonIcon>
+                    <ButtonIcon onClick={removeAmountCart}>
+                      <MinusIcon className="w-5 h-5" />
+                    </ButtonIcon>
                   </div>
                 </div>
                 {/* <div className="flex space-x-2">
@@ -65,7 +70,7 @@ function Aside({ onShowModal }: IAside): JSX.Element {
             </div>
             <hr className="border-b-2 border-orange-200 rounded-sm mt-2" />
             <div className="flex justify-between">
-              <span className="text-red-700">{initPrice}</span>
+              <span className="text-red-700">{transformCurrency(initPricePerItem)}</span>
               <span>X {amount}</span>
             </div>
           </div>
@@ -78,8 +83,8 @@ function Aside({ onShowModal }: IAside): JSX.Element {
         <div className="flex absolute bottom-2 inset-x-0">
           <div className="flex mx-3 w-full items-center">
             <div className=" w-full">
-              <span className="text-xl font-bold">Total :</span>
-              <span className="text-xl font-medium"> {initPrice * amount}</span>
+              <span className="text-xl font-bold">Total : </span>
+              <span className="text-xl font-medium">{transformCurrency(totalPrice)}</span>
             </div>
             <div className="w-full">
               <Button full onClick={onShowModal}>

@@ -1,6 +1,6 @@
-import React from "react";
-import Head from "next/head";
-import Link from "next/link";
+import React from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 
 function Header(): JSX.Element {
   return (
@@ -22,7 +22,11 @@ function Header(): JSX.Element {
             </div>
             <div>
               <ul className="flex flex-row space-x-2">
-                <li>Product</li>
+                <li>
+                  <Link href="/products">
+                    <a>Products</a>
+                  </Link>
+                </li>
                 <li>Buyer</li>
                 <li>
                   <Link href="/summary">

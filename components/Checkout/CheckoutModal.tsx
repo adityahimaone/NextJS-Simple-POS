@@ -1,20 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useReactToPrint } from "react-to-print";
-import classNames from "classnames";
+import React, { useEffect, useRef, useState } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import classNames from 'classnames';
 
-import Modal from "../UI/Modal";
-import InputText from "../UI/Form/InputText";
-import InputSelect from "../UI/Form/InputSelect";
-import { Product } from "@/utils/Constants";
-import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import { getDataBuyers } from "@/store/buyerSlice";
-import { postDataTransaction } from "@/store/transactionsSlice";
-import { ICheckoutData } from "@/utils/Types";
-import CheckoutSummary from "./CheckoutSummary";
-import Button from "../UI/Form/Button";
-import CheckoutPrint from "./CheckoutPrint";
+import Modal from '../UI/Modal';
+import InputText from '../UI/Form/InputText';
+import InputSelect from '../UI/Form/InputSelect';
+import { Product } from '@/utils/Constants';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { getDataBuyers } from '@/store/buyerSlice';
+import { postDataTransaction } from '@/store/transactionsSlice';
+import { ICheckoutData } from '@/utils/Types';
+import CheckoutSummary from './CheckoutSummary';
+import Button from '../UI/Form/Button';
+import CheckoutPrint from './CheckoutPrint';
 
-function Checkout({ onClose }: { onClose: () => void }): JSX.Element {
+interface ICheckout {
+  onClose: () => void;
+}
+
+function Checkout({ onClose }: ICheckout): JSX.Element {
   const dispatch = useAppDispatch();
   const componentPrintRef = useRef<HTMLDivElement>(null);
 
@@ -22,17 +26,15 @@ function Checkout({ onClose }: { onClose: () => void }): JSX.Element {
   const carts = useAppSelector((state) => state.carts);
   const { product, amount } = carts.data;
 
-  const defaultPrice = product.prices.filter(
-    (price) => price.priceFor === "regular"
-  )[0].price;
+  const defaultPrice = product.prices.filter((price) => price.priceFor === 'regular')[0].price;
 
   const [showPrintLayout, setShowPrintLayout] = useState<boolean>(false);
   const [price, setPrice] = useState<number>(defaultPrice);
   const [checkoutData, setCheckoutData] = useState<ICheckoutData>({
     buyer: {
-      id: "",
-      name: "",
-      type: "regular",
+      id: '',
+      name: '',
+      type: 'regular',
     },
     product: product ? product : ({} as typeof Product),
     amount: amount ? amount : 0,
@@ -41,10 +43,8 @@ function Checkout({ onClose }: { onClose: () => void }): JSX.Element {
 
   useEffect(() => {
     const buyerType = checkoutData.buyer.type;
-    const newPrice = product.prices.filter(
-      (price) => price.priceFor === buyerType
-    )[0]?.price;
-    console.log(newPrice, "newPrice");
+    const newPrice = product.prices.filter((price) => price.priceFor === buyerType)[0]?.price;
+    console.log(newPrice, 'newPrice');
     if (newPrice === undefined) {
       setPrice(defaultPrice);
     } else {
@@ -103,7 +103,7 @@ function Checkout({ onClose }: { onClose: () => void }): JSX.Element {
         item: checkoutData.product.name,
         qty: checkoutData.amount,
         buyer: checkoutData.buyer.name,
-      })
+      }),
     );
     handlePrint();
     onClose();
@@ -122,25 +122,14 @@ function Checkout({ onClose }: { onClose: () => void }): JSX.Element {
               onChange={onChangeSelectBuyer}
             />
           </div>
-          <CheckoutSummary
-            product={product}
-            price={price}
-            amount={amount}
-            checkoutData={checkoutData}
-          />
+          <CheckoutSummary product={product} price={price} amount={amount} checkoutData={checkoutData} />
           <div className="flex justify-end">
             <Button type="submit">Generate Invoice</Button>
           </div>
         </form>
       </Modal>
       <div className={showHideClass}>
-        <CheckoutPrint
-          product={product}
-          price={price}
-          amount={amount}
-          data={checkoutData}
-          ref={componentPrintRef}
-        />
+        <CheckoutPrint product={product} price={price} amount={amount} data={checkoutData} ref={componentPrintRef} />
       </div>
     </>
   );

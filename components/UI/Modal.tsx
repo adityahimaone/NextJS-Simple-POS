@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface IModal {
   children: React.ReactNode;
@@ -15,17 +15,12 @@ interface IModalOverlay {
 }
 
 const Backdrop = ({ onClose }: IBackdrop) => {
-  return (
-    <div
-      onClick={onClose}
-      className=" fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50 z-20"
-    ></div>
-  );
+  return <div onClick={onClose} className=" fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50 z-20"></div>;
 };
 
 const ModalOverlay = ({ children }: IModalOverlay) => {
   return (
-    <div className="fixed top-[20vh] left-[5%] w-[90%] lg:w-[40rem] lg:left-[calc(50%_-_20rem)] bg-white p-[1rem] overflow-hidden rounded-md drop-shadow-md z-30 transition-all">
+    <div className="fixed top-[10vh] left-[5%] w-[90%] overflow-y-auto  min-h-[65vh] max-h-[70vh] lg:w-[40rem] lg:left-[calc(50%_-_20rem)] bg-white p-[1rem] overflow-hidden rounded-md drop-shadow-md z-30 transition-all">
       <div>{children}</div>
     </div>
   );
@@ -46,7 +41,7 @@ function Modal({ children, onClose, title }: IModal): JSX.Element {
 }
 
 Modal.defaultProps = {
-  title: "Modal",
+  title: 'Modal',
 };
 
 export default Modal;

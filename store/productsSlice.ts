@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
-import { IIntialStateProducts, IProduct, IResponse } from "@/utils/Types";
-import request from "@/utils/helper/axiosReq";
+import { IIntialStateProducts, IProduct, IResponse } from '@/utils/Types';
+import request from '@/utils/helper/axiosReq';
 
 const initialState: IIntialStateProducts = {
   loading: false,
@@ -9,16 +9,18 @@ const initialState: IIntialStateProducts = {
   error: undefined,
 };
 
-export const getDataProducts = createAsyncThunk(
-  "product/getDataProducts",
-  async () => {
-    const response = await request("get", "/Items");
-    return response.data;
-  }
-);
+export const getDataProducts = createAsyncThunk('product/getDataProducts', async () => {
+  const response = await request('get', '/Items');
+  return response.data;
+});
+
+export const addDataProducts = createAsyncThunk('product/addDataProducts', async (product: IProduct) => {
+  const response = await request('post', '/Items', product);
+  return response.data;
+});
 
 export const products = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -26,14 +28,23 @@ export const products = createSlice({
       .addCase(getDataProducts.pending, (state) => {
         state.loading = true;
       })
-      .addCase(
-        getDataProducts.fulfilled,
-        (state, action: PayloadAction<any>) => {
-          state.loading = false;
-          state.data = action.payload;
-        }
-      )
+      .addCase(getDataProducts.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
       .addCase(getDataProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+    builder
+      .addCase(addDataProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addDataProducts.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.data.push(action.payload);
+      })
+      .addCase(addDataProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

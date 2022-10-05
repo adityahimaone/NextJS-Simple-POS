@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import { addCart } from "@/store/cartSlice";
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { addCart } from '@/store/cartSlice';
+import transformCurrency from '@/utils/helper/transformCurrency';
 
 interface ICardProduct {
   id: string | number;
@@ -17,14 +18,16 @@ function CardProduct({ ...product }: ICardProduct): JSX.Element {
   const dispatch = useAppDispatch();
   const { name, type, prices } = product;
   const thumbnailName = name
-    .split(" ")
+    .split(' ')
     .map((word) => word[0])
-    .join("")
+    .join('')
     .toUpperCase();
 
   const handleAddCart = () => {
     dispatch(addCart({ product, amount: 1 }));
   };
+
+  const newPrice = prices.filter(({ priceFor }) => priceFor === 'regular').map(({ price }) => price)[0];
 
   return (
     <div
@@ -35,13 +38,9 @@ function CardProduct({ ...product }: ICardProduct): JSX.Element {
         <span className="text-4xl text-white">{thumbnailName}</span>
       </div>
       <div className="p-2">
-        <span>{name}</span>
-        <p>{type}</p>
-        <p>
-          {prices
-            .filter(({ priceFor }) => priceFor === "regular")
-            .map(({ price }) => price)}
-        </p>
+        <span className="text-base font-semibold">{name}</span>
+        <p className="text-sm text-gray-700">{type}</p>
+        <p>{transformCurrency(newPrice)}</p>
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import type { NextPage } from "next";
+import React, { useEffect } from 'react';
+import type { NextPage } from 'next';
 
-import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import LayoutDefault from "@/components/layouts/Default";
-import { getDataSummary } from "@/store/summarySlice";
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import LayoutDefault from '@/components/layouts/Default';
+import { getDataSummary } from '@/store/summarySlice';
 
 const Summary: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -12,12 +12,12 @@ const Summary: NextPage = () => {
   const buyers = useAppSelector((state) => state.buyers);
   const products = useAppSelector((state) => state.products);
 
-  console.log(transactions, "transactions");
+  console.log(transactions, 'transactions');
 
   const { data } = transactions;
 
-  let bestSellingItemKey = "";
-  let bestSellingCategoryKey = "";
+  let bestSellingItemKey = '';
+  let bestSellingCategoryKey = '';
   let revenueOfTheDay = 0;
 
   const getBestSellingAndCategory = () => {
@@ -39,9 +39,7 @@ const Summary: NextPage = () => {
         itemsObj[item] += 1;
       }
       //   best selling category
-      const productObj = products.data.filter(
-        (product) => product.name === item
-      )[0];
+      const productObj = products.data.filter((product) => product.name === item)[0];
       const { type } = productObj;
       if (categoriesObj[type] === undefined) {
         categoriesObj[type] = 1;
@@ -65,21 +63,13 @@ const Summary: NextPage = () => {
   };
 
   const getRevenueOfTheDay = () => {
-    const itemsObj: {
-      [key: string]: number;
-    } = {};
-
     let sum = 0;
     data.forEach((transaction) => {
       const { buyer, item, qty } = transaction;
       const buyerObj = buyers.data.find((buyerObj) => buyerObj.name === buyer);
-      const productObj = products.data.find(
-        (productObj) => productObj.name === item
-      );
-      const pricesObj = productObj?.prices.find(
-        (pricesObj) => pricesObj.priceFor === buyerObj?.type || "regular"
-      );
-      console.log(pricesObj?.price, "pricesObj");
+      const productObj = products.data.find((productObj) => productObj.name === item);
+      const pricesObj = productObj?.prices.find((pricesObj) => pricesObj.priceFor === buyerObj?.type || 'regular');
+      console.log(pricesObj?.price, 'pricesObj');
       sum += (pricesObj?.price !== undefined ? pricesObj?.price : 0) * qty;
     });
     return (revenueOfTheDay = sum);
@@ -88,63 +78,52 @@ const Summary: NextPage = () => {
   getRevenueOfTheDay();
 
   getBestSellingAndCategory();
-  console.log(bestSellingItemKey, "bestSellingItemKey");
-  console.log(bestSellingCategoryKey, "bestSellingCategoryKey");
-  console.log(revenueOfTheDay, "revenueOfTheDay");
+  console.log(bestSellingItemKey, 'bestSellingItemKey');
+  console.log(bestSellingCategoryKey, 'bestSellingCategoryKey');
+  console.log(revenueOfTheDay, 'revenueOfTheDay');
 
-  const {
-    totalTransaction,
-    bestSellingItem,
-    bestSellingCategory,
-    revenue,
-    rpc,
-    bestSpenders,
-  } = summary.data;
+  const { totalTransaction, bestSellingItem, bestSellingCategory, revenue, rpc, bestSpenders } = summary.data;
 
   useEffect(() => {
     dispatch(getDataSummary());
   }, []);
   return (
     <LayoutDefault>
-      <div>
-        <h1 className="text-xl font-semibold">Summary Report</h1>
-      </div>
-      <div>
-        <div className="grid grid-cols-2 gap-x-5 gap-y-2">
-          <div>Total Transaction</div>
-          <div> : {data.length}</div>
-          <div>Best Selling Item </div>
-          <div> : {bestSellingItemKey}</div>
-          <div>Best Selling Category</div>
-          <div> : {bestSellingCategoryKey}</div>
-          <div>Revenue of the Day</div>
-          <div> : {revenueOfTheDay}</div>
-          <div className="flex items-center">Revenue per Category</div>
-          <div className="flex space-x-2 items-center">
-            <span> : </span>
-            {rpc.map((item) => (
-              <div
-                className="flex p-1 bg-slate-300 rounded-md space-x-2"
-                key={item.category}
-              >
-                <div>{item.category}</div>
-                <div>{item.revenue}</div>
-              </div>
-            ))}
-          </div>
-          <div>Three Most Spender Customer</div>
-          <div className="flex space-x-2 items-center">
-            <span> : </span>
-            {bestSpenders.map((item) => (
-              <div
-                className="flex p-1 bg-slate-300 rounded-md space-x-2"
-                key={item.name}
-              >
-                <div>{item.name}</div>
-                <div>{item.type}</div>
-                <div>{item.spent}</div>
-              </div>
-            ))}
+      <div className="mx-auto max-w-screen-lg">
+        <div>
+          <h1 className="text-xl font-semibold">Summary Report</h1>
+        </div>
+        <div>
+          <div className="grid grid-cols-2 gap-x-5 gap-y-2">
+            <div>Total Transaction</div>
+            <div> : {data.length}</div>
+            <div>Best Selling Item </div>
+            <div> : {bestSellingItemKey}</div>
+            <div>Best Selling Category</div>
+            <div> : {bestSellingCategoryKey}</div>
+            <div>Revenue of the Day</div>
+            <div> : {revenueOfTheDay}</div>
+            <div className="flex items-center">Revenue per Category</div>
+            <div className="flex space-x-2 items-center">
+              <span> : </span>
+              {rpc.map((item) => (
+                <div className="flex p-1 bg-slate-300 rounded-md space-x-2" key={item.category}>
+                  <div>{item.category}</div>
+                  <div>{item.revenue}</div>
+                </div>
+              ))}
+            </div>
+            <div>Three Most Spender Customer</div>
+            <div className="flex space-x-2 items-center">
+              <span> : </span>
+              {bestSpenders.map((item) => (
+                <div className="flex p-1 bg-slate-300 rounded-md space-x-2" key={item.name}>
+                  <div>{item.name}</div>
+                  <div>{item.type}</div>
+                  <div>{item.spent}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
